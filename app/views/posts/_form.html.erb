@@ -1,0 +1,16 @@
+<div class="mx-auto w-25">
+  <h1 class="mt-2"><%=label%></h1>
+  <%= form_for :post, url: url,method: method do |f| %>
+    <div class="mb-3">
+      <%= f.label :content,class:"form-label required" %>
+      <%= f.text_area :text,class:"form-control",placeholder:"Enter Your name" %>
+      <p class='error'><%= show_errors(@post, :text) %></p>
+    </div>
+    <div class="mb-3">
+      <%= f.label :images, "Image (PNG, JPG, JPEG, max 1MB)" %>
+      <%= f.file_field :images, multiple: true%>
+      <p class='error'><%= show_errors(@post, :images) %></p>
+    </div>
+    <%= f.submit "Submit" ,class:"btn btn-primary w-100 d-block text-center"%>
+  <% end %>
+</div>

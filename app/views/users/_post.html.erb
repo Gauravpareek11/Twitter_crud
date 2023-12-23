@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2><%= label%></h2>
+  <% @posts.each do |post| %>
+    <div class="card mb-3">
+      <% if post.images.present? %>
+        <%= image_tag post.images.first,class:"card-img-top" ,alt:"card-thumbnail" %>
+      <% end %>
+      <div class="card-body">
+        <p class="card-text"><%= post.text %></p>
+        <p class="card-text"><small class="text-muted">Posted by <%= post.user.name %></small></p>
+        <% if current_user&.id == post&.user_id%>
+          <div class="btn-group">
+            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn-primary' %>
+            <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
